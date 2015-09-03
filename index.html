@@ -18,11 +18,41 @@
   </head>
 
   <body>
-    <h1 class='title'>Horizon NYC Settings</h1>
+    <h1 class='title'>Horizon NYC</h1>
+
+    <div class="item-container">
+      <div class="item-container-header">Time Settings</div>
+      <div class="item-container-content">
+       <div class="item tab-buttons">
+         <a name="tab-1" class="tab-button active">12 Hour</a>
+         <a name="tab-1" class="tab-button">24 Hour</a>
+       </div>
+     </div>
+    </div>
+     <div class='item-container-footer'>
+        This switches the time display format.
+      </div>
+    </div>
+
+    <div class="item-container">
+      <div class="item-container-header">Temperature Settings</div>
+      <div class="item-container-content">
+       <div class="item tab-buttons">
+         <a name="tab-2" class="tab-button active">Fahrenheit</a>
+         <a name="tab-2" class="tab-button">Celcius</a>
+       </div>
+     </div>
+    </div>
+     <div class='item-container-footer'>
+        This switches the temperature display format.
+      </div>
+    </div>
 
     <div class='item-container'>
+       <div class="item-container-header">Donate</div>
       <div class='item-container-content'>
         <div class='button-container'>
+        <br><br>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
@@ -30,33 +60,9 @@
         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
         </form>
+        <br><br>
         </div>
       </div>
-    </div>
-
-    <div class='item-container'>
-      <div class='item-container-header'>Customizability</div>
-      <div class='item-container-content'>
-        <label class='item'>
-          Background Color
-          <input id='background_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
-        </label>
-      </div>
-      <div class='item-container-footer'>
-        Choose the app's background color. Used if High Contrast Mode is not selected. Note: Only available on Basalt watches that support many colors.
-      </div>
-    </div>
-
-    <div class='item-container'>
-      <div class='item-container-header'>Accessibility</div>
-      <div class='item-container-content'>
-        <label class='item'>
-          High Contrast Mode
-          <input id='high_contrast_checkbox' type='checkbox' class='item-toggle'>
-        </label>
-      </div>
-      <div class='item-container-footer'>
-        This switches the app colors to a higher contrast set that promotes readability in low light.
       </div>
     </div>
 
