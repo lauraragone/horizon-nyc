@@ -1,6 +1,9 @@
 @import url(../fonts/pfdindisplaypro-regular.woff);
 @import url(../fonts/ptsans-regular.woff);
-@import url(../fonts/roadway.ttf) format('truetype');
+@font-face {
+    font-family: 'Roadway';
+    src: url(../fonts/roadway.ttf) format('truetype');
+  }
 * {
   margin: 0;
   padding: 0; }
