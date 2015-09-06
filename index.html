@@ -104,12 +104,9 @@
   var submitButton = document.getElementById('submit_button');
   submitButton.addEventListener('click', function() {
     console.log('Submit');
-    // Some example configuration values
-  var config = {
-  };
     // Close config page and return data
     location.href = 'pebblejs://close#' + 
-    encodeURIComponent(JSON.stringify(config));
+    encodeURIComponent(JSON.stringify(getConfigData()));
   });
   (function() {
     var timeSettings = document.getElementById('time_settings');
