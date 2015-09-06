@@ -106,7 +106,7 @@
   submitButton.addEventListener('click', function() {
     console.log('Submit');
     // Close config page and return data
-    // location.href = 'pebblejs://close#' + 
+    location.href = 'pebblejs://close#' + 
     encodeURIComponent(JSON.stringify(getConfigData()));
   });
 
