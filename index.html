@@ -23,9 +23,8 @@
       <div class="item-container-header">Time Settings</div>
       <div class="item-container-content">
        <div class="item tab-buttons">
-         <!--<input id='time_settings' type='radio' class='tab-button'>-->
-         <a name="tab-1" class="tab-button active">12 hour</a>
-         <a name="tab-1" class="tab-button">24 hour</a>
+         <a name="tab-1" id="12-hour-button" class="tab-button active">12 hour</a>
+         <a name="tab-1" id="24-hour-button" class="tab-button">24 hour</a>
        </div>
      </div>
     </div>
@@ -38,9 +37,8 @@
       <div class="item-container-header">Temperature Settings</div>
       <div class="item-container-content">
        <div class="item tab-buttons">
-         <!--<input id='temperature_settings' type='radio' class='tab-button'>-->
-         <a name="tab-2" class="tab-button active">FAHRENHEIT</a>
-         <a name="tab-2" class="tab-button">CELSIUS</a>
+         <a name="tab-2" id="fahrenheit-button" class="tab-button active">FAHRENHEIT</a>
+         <a name="tab-2" id="celsius-button" class="tab-button">CELSIUS</a>
        </div>
      </div>
     </div>
@@ -75,17 +73,20 @@
   </body>
   <script>
   function getConfigData() {
-    var timeSettings = document.getElementById('time_settings');
-    var temperatureSettings = document.getElementById('temperature_settings');
+    var time12HourSelected = document.getElementById('12-hour-button').selected
+    var fahrenheitSelected = document.getElementById('fahrenheit-button').selected
  
     var options = {
-      'time_setting': time_settings.checked,
-      'temperature_setting': temperature_settings.checked
+      'time_setting': time12HourSelected,
+      'temperature_setting': fahrenheitSelected
     };
+
     // Save for next launch
     localStorage['time_setting'] = options['time_settings'];
     localStorage['temperature_setting'] = options['temperature_settings'];
+
     console.log('Got options: ' + JSON.stringify(options));
+
     return options;
   }
   function getQueryParam(variable, defaultValue) {
