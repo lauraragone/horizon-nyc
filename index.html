@@ -23,6 +23,7 @@
       <div class="item-container-header">Time Settings</div>
       <div class="item-container-content">
        <div class="item tab-buttons">
+         <input id='time_settings' type='radio' class='tab-button'>
          <a name="tab-1" class="tab-button active">12 hour</a>
          <a name="tab-1" class="tab-button">24 hour</a>
        </div>
@@ -37,6 +38,7 @@
       <div class="item-container-header">Temperature Settings</div>
       <div class="item-container-content">
        <div class="item tab-buttons">
+         <input id='temperature_settings' type='radio' class='tab-button'>
          <a name="tab-2" class="tab-button active">FAHRENHEIT</a>
          <a name="tab-2" class="tab-button">CELSIUS</a>
        </div>
@@ -73,16 +75,16 @@
   </body>
   <script>
   function getConfigData() {
-    var backgroundColorPicker = document.getElementById('background_color_picker');
-    var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
+    var timeSettings = document.getElementById('time_settings');
+    var temperatureSettings = document.getElementById('temperature_settings');
  
     var options = {
-      'background_color': backgroundColorPicker.value,
-      'high_contrast': highContrastCheckbox.checked
+      'time_setting': time_settings.checked,
+      'temperature_setting': temperature_settings.checked
     };
     // Save for next launch
-    localStorage['background_color'] = options['background_color'];
-    localStorage['high_contrast'] = options['high_contrast'];
+    localStorage['time_setting'] = options['time_settings'];
+    localStorage['temperature_setting'] = options['temperature_settings'];
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
@@ -108,14 +110,14 @@
     location.href = 'pebblejs://close#' + 
     encodeURIComponent(JSON.stringify(config));
   });
-  // (function() {
-  //   var backgroundColorPicker = document.getElementById('background_color_picker');
-  //   var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
-  //   // Load any previously saved configuration, if available
-  //   if(localStorage['high_contrast']) {
-  //     highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);
-  //     backgroundColorPicker.value = localStorage['background_color'];
-  //   }
-  // })();
+  (function() {
+    var timeSettings = document.getElementById('time_settings');
+    var temperatureSettings = document.getElementById('temperature_settings');
+    // Load any previously saved configuration, if available
+    if(localStorage['time_setting']) {
+      timeSettings.checked = JSON.parse(localStorage['time_setting']);
+      temperatureSettings.checked = localStorage['temperature_setting'];
+    }
+  })();
   </script>
 </html>
