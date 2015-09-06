@@ -87,7 +87,7 @@
 
     console.log('Got options: ' + JSON.stringify(options));
 
-    // return options;
+    return options;
   }
 
   function getQueryParam(variable, defaultValue) {
@@ -127,6 +127,9 @@
         timeSettings.className += ' active';
       }
     }
+    else {
+      timeSettings.className += ' active';
+    }
 
     if(localStorage['fahrenheit_setting']) {
       console.log('local storage has another thing');
@@ -140,6 +143,9 @@
         document.getElementById('celsius-button').className.replace( /(?:^|\s)active(?!\S)/g , '' );
         temperatureSettings.className += ' active';
       }
+    }
+    else {
+      temperatureSettings.className += ' active';
     }
   })();
 
