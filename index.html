@@ -7,7 +7,6 @@
   <style>
   .title {
     padding: 15px 10px;
-    //text-transform: uppercase;
     font-family: 'Roadway', sans-serif;
     font-size: 1.2em;
     font-weight: 500;
@@ -23,7 +22,7 @@
       <div class="item-container-header">Time Settings</div>
       <div class="item-container-content">
        <div class="item tab-buttons">
-         <a name="tab-1" id="12-hour-button" class="tab-button active">12 hour</a>
+         <a name="tab-1" id="12-hour-button" class="tab-button">12 hour</a>
          <a name="tab-1" id="24-hour-button" class="tab-button">24 hour</a>
        </div>
      </div>
@@ -37,7 +36,7 @@
       <div class="item-container-header">Temperature Settings</div>
       <div class="item-container-content">
        <div class="item tab-buttons">
-         <a name="tab-2" id="fahrenheit-button" class="tab-button active">FAHRENHEIT</a>
+         <a name="tab-2" id="fahrenheit-button" class="tab-button">FAHRENHEIT</a>
          <a name="tab-2" id="celsius-button" class="tab-button">CELSIUS</a>
        </div>
      </div>
@@ -72,23 +71,25 @@
     </div>
   </body>
   <script>
+
   function getConfigData() {
-    var time12HourSelected = document.getElementById('12-hour-button').selected
-    var fahrenheitSelected = document.getElementById('fahrenheit-button').selected
+    var time12HourSelected = document.getElementById('12-hour-button').classList.contains('active');
+    var fahrenheitSelected = document.getElementById('fahrenheit-button').classList.contains('active');
  
     var options = {
-      'time_setting': time12HourSelected,
-      'temperature_setting': fahrenheitSelected
+      '12_hour_setting': time12HourSelected,
+      'fahrenheit_setting': fahrenheitSelected
     };
 
     // Save for next launch
-    localStorage['time_setting'] = options['time_settings'];
-    localStorage['temperature_setting'] = options['temperature_settings'];
+    localStorage['12_hour_setting'] = options['12_hour_setting'];
+    localStorage['fahrenheit_setting'] = options['fahrenheit_setting'];
 
     console.log('Got options: ' + JSON.stringify(options));
 
-    return options;
+    // return options;
   }
+
   function getQueryParam(variable, defaultValue) {
     var query = location.search.substring(1);
     var vars = query.split('&');
@@ -105,17 +106,42 @@
   submitButton.addEventListener('click', function() {
     console.log('Submit');
     // Close config page and return data
-    location.href = 'pebblejs://close#' + 
+    // location.href = 'pebblejs://close#' + 
     encodeURIComponent(JSON.stringify(getConfigData()));
   });
+
   (function() {
-    var timeSettings = document.getElementById('time_settings');
-    var temperatureSettings = document.getElementById('temperature_settings');
+    var timeSettings = document.getElementById('12-hour-button');
+    var temperatureSettings = document.getElementById('fahrenheit-button');
     // Load any previously saved configuration, if available
-    if(localStorage['time_setting']) {
-      timeSettings.checked = JSON.parse(localStorage['time_setting']);
-      temperatureSettings.checked = localStorage['temperature_setting'];
+    if(localStorage['12_hour_setting']) {
+      console.log('local storage has a thing');
+      console.log('time setting:' + JSON.parse(localStorage['12_hour_setting']));
+
+      if(JSON.parse(localStorage['12_hour_setting']) == false) {
+        timeSettings.className.replace( /(?:^|\s)active(?!\S)/g , '' );
+        document.getElementById('24-hour-button').className += ' active';
+      }
+      else {
+        document.getElementById('24-hour-button').className.replace( /(?:^|\s)active(?!\S)/g , '' );
+        timeSettings.className += ' active';
+      }
+    }
+
+    if(localStorage['fahrenheit_setting']) {
+      console.log('local storage has another thing');
+      console.log('temp setting:' + JSON.parse(localStorage['fahrenheit_setting']));
+
+      if(JSON.parse(localStorage['fahrenheit_setting']) == false) {
+        temperatureSettings.className.replace( /(?:^|\s)active(?!\S)/g , '' );
+        document.getElementById('celsius-button').className += ' active';
+      }
+      else {
+        document.getElementById('celsius-button').className.replace( /(?:^|\s)active(?!\S)/g , '' );
+        temperatureSettings.className += ' active';
+      }
     }
   })();
+
   </script>
 </html>
