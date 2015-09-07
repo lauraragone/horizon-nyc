@@ -87,15 +87,18 @@
   function getConfigData() {
     var time12HourSelected = document.getElementById('12-hour-button').classList.contains('active');
     var fahrenheitSelected = document.getElementById('fahrenheit-button').classList.contains('active');
+    var mmDDSelected = document.getElementById('mm-dd-button').classList.contains('active');
  
     var options = {
       '12_hour_setting': time12HourSelected,
-      'fahrenheit_setting': fahrenheitSelected
+      'fahrenheit_setting': fahrenheitSelected,
+      'mm_dd_setting': mmDDSelected
     };
 
     // Save for next launch
     localStorage['12_hour_setting'] = options['12_hour_setting'];
     localStorage['fahrenheit_setting'] = options['fahrenheit_setting'];
+    localStorage['mm_dd_setting'] = options['mm_dd_setting'];
 
     console.log('Got options: ' + JSON.stringify(options));
 
@@ -125,6 +128,8 @@
   (function() {
     var timeSettings = document.getElementById('12-hour-button');
     var temperatureSettings = document.getElementById('fahrenheit-button');
+    var dateSettings = document.getElementById('mm-dd-button');
+
     // Load any previously saved configuration, if available
     if(localStorage['12_hour_setting']) {
       console.log('local storage has a thing');
@@ -158,6 +163,23 @@
     }
     else {
       temperatureSettings.className += ' active';
+    }
+
+    if(localStorage['mm_dd_setting']) {
+      console.log('local storage has yet another thing');
+      console.log('date setting:' + JSON.parse(localStorage['mm_dd_setting']));
+
+      if(JSON.parse(localStorage['mm_dd_setting']) == false) {
+        dateSettings.className.replace( /(?:^|\s)active(?!\S)/g , '' );
+        document.getElementById('dd-mm-button').className += ' active';
+      }
+      else {
+        document.getElementById('dd-mm-button').className.replace( /(?:^|\s)active(?!\S)/g , '' );
+        dateSettings.className += ' active';
+      }
+    }
+    else {
+      dateSettings.className += ' active';
     }
   })();
 
